@@ -32,6 +32,8 @@ Vagrant.configure('2') do |configuration|
             machine.vm.box_url = [
 
                 './infrastructure/boxes/debian-11.3-amd64/debian-11.3-amd64-virtualbox.box',
+
+                'https://vagrant:K3fR8c3uKUGHY32m@software.stadtwerk.org/vagrant/blue_green_deployment/debian-11.3-amd64/debian-11.3-amd64-virtualbox.box',
             ]
 
             # The hostname of the virtual machine.
