@@ -1,0 +1,6 @@
+- name: Restart the docker daemon.
+  become: yes
+  systemd:
+    name: docker
+    daemon_reload: true    # We want to reload the systemd manager configuration every time.
+    state: restarted

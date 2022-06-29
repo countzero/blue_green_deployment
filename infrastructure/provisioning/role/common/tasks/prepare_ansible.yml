@@ -1,0 +1,7 @@
+- name: Install packages that Ansible expects.
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - acl

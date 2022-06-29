@@ -1,0 +1,23 @@
+#
+# .gitignore
+#
+
+# Ignore Sublime Text files.
+*.sublime-workspace
+
+# Ignore the '.vagrant' directory.
+.vagrant/*
+
+# Ignore the 'node_modules' directory.
+application/node_modules/*
+
+# Ignore temporary packer directories.
+infrastructure/boxes/*/output-virtualbox-iso
+infrastructure/boxes/*/packer_cache
+
+# Ignore the vagrant boxes and checksums.
+infrastructure/boxes/*/*.box
+infrastructure/boxes/*/*.checksum
+
+# Ignore the ansible.log file.
+ansible.log

@@ -1,0 +1,20 @@
+- name: Add the public Docker repository key to the keychain.
+  become: yes
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    id: 0EBFCD88
+    state: present
+
+- name: Copy the docker.list file to '/etc/apt/sources.list.d/docker.list'.
+  become: yes
+  copy:
+    src: docker.list
+    group: root
+    owner: root
+    mode: 0644
+    dest: /etc/apt/sources.list.d/docker.list
+
+- name: Update the APT repositories cache.
+  become: yes
+  apt:
+    update_cache: yes

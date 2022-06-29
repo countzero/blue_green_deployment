@@ -1,0 +1,10 @@
+- name: Copy the daemon.json file to '/etc/docker/daemon.json'.
+  become: yes
+  copy:
+    src: daemon.json
+    group: root
+    owner: root
+    mode: 0644
+    dest: /etc/docker/daemon.json
+  notify:
+    - Restart the docker daemon.

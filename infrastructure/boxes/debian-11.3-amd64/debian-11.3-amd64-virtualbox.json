@@ -1,0 +1,63 @@
+{
+    "builders":
+    [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "Debian_64",
+            "vm_name": "debian-11.3-amd64",
+            "boot_wait": "3s",
+            "boot_command":
+            [
+                "<esc><wait>",
+                "auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"
+            ],
+            "headless": false,
+            "disk_size": 256000,
+            "http_directory": "http",
+            "iso_checksum": "sha256:7892981e1da216e79fb3a1536ce5ebab157afdd20048fe458f2ae34fbc26c19b",
+            "iso_urls": [
+                "https://cdimage.debian.org/cdimage/release/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso",
+                "https://cdimage.debian.org/cdimage/archive/11.3.0/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso"
+            ],
+            "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_port": 22,
+            "ssh_timeout": "3600s",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "virtualbox_version_file": ".vbox_version",
+            "vboxmanage":
+            [
+                [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
+                [ "modifyvm", "{{.Name}}", "--cpus", "2" ],
+                [ "modifyvm", "{{.Name}}", "--natdnsproxy1", "on" ],
+                [ "modifyvm", "{{.Name}}", "--natdnshostresolver1", "on" ]
+            ]
+        }
+    ],
+    "provisioners":
+    [
+        {
+            "type": "shell",
+            "scripts":
+            [
+                "scripts/update.sh",
+                "scripts/sshd.sh",
+                "scripts/networking.sh",
+                "scripts/virtualbox.sh",
+                "scripts/vagrant.sh",
+                "scripts/cleanup.sh",
+                "scripts/minimize.sh"
+            ],
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+        }
+    ],
+    "post-processors":
+    [
+        {
+            "type": "vagrant",
+            "compression_level": 8,
+            "output": "debian-11.3-amd64-virtualbox.box"
+        }
+    ]
+}

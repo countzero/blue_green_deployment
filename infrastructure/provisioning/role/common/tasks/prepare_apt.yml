@@ -1,0 +1,13 @@
+- name: Get the time since the last repositories cache update in seconds.
+  become: true
+  shell: expr $(date +%s) - $(stat -c %Y /var/cache/apt/pkgcache.bin)
+  register: last_cache_update_in_seconds
+
+# We have to apt-get update manually because the official
+# apt module does NOT support the --allow-releaseinfo-change
+# option. (https://github.com/ansible/ansible/issues/48352)
+# We need that option since the Debian 11 release. [C3-981]
+- name: Update the repositories cache.
+  become: yes
+  command: apt-get update --yes --allow-releaseinfo-change
+  when: last_cache_update_in_seconds.stdout|int > 3600

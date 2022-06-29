@@ -1,0 +1,8 @@
+#
+# The playbook for the application server tier.
+#
+- hosts: application-servers
+  roles:
+    - common
+    - docker_host
+    - application

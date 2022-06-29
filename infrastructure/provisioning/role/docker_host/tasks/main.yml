@@ -1,0 +1,7 @@
+- import_tasks: add_repository.yml
+- import_tasks: prepare_group_and_user.yml
+- import_tasks: install_docker_ce.yml
+- import_tasks: setup_daemon.yml
+- import_tasks: configure_daemon_environment.yml
+- import_tasks: restart_docker_daemon.yml
+- import_tasks: reset_ssh_connection.yml

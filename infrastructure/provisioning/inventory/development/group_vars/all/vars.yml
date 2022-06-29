@@ -1,0 +1,4 @@
+# We do not want to break the automation in the development
+# context by letting ssh interactively ask for adding the
+# new host to the known_hosts file.
+ansible_ssh_extra_args: -o StrictHostKeyChecking=no

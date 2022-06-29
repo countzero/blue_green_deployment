@@ -1,0 +1,4 @@
+- name: Execute the application deploy script.
+  command: /bin/bash ./deploy.bash
+  args:
+    chdir: /home/vagrant/application/

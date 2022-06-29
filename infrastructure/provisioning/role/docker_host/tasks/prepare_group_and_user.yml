@@ -1,0 +1,17 @@
+- name: Ensure that the group 'docker' exists.
+  become: yes
+  group:
+    name: docker
+    state: present
+
+- name: Get the name of the non privileged user running the deploy on the host.
+  become: false
+  shell: whoami
+  register: whoami_result
+
+- name: "Adding non privileged user '{{ whoami_result.stdout }}' to group 'docker'."
+  become: yes
+  user:
+    name: "{{ whoami_result.stdout }}"
+    groups: docker
+    append: yes

@@ -1,0 +1,11 @@
+# We have to reset the SSH connection after adding the non
+# privileged user to the "docker" group, because this change
+# is not dynamically update to the current SSH process!
+#
+# This fixes the following error from the docker_login task:
+#
+#     Error connecting: Error while fetching server API version:
+#     ('Connection aborted.', error(13, 'Permission denied'))
+#
+- name: Reset the SSH connection to allow user changes to affect the 'current login user'.
+  meta: reset_connection

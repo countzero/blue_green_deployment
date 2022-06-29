@@ -1,0 +1,13 @@
+{
+    "name": "application",
+    "version": "1.0.0",
+    "description": "Node.js application",
+    "author": "Finn Kumkar <finn.kumkar@gmail.com>",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "4.18.1"
+    }
+}

@@ -1,0 +1,30 @@
+- name: Install the package 'htop'.
+  become: yes
+  apt:
+    name: htop
+    state: present
+
+- name: Create the configuration directory '~/.config/htop'.
+  file:
+    path: ~/.config/htop
+    state: directory
+    mode: 0755
+
+- name: Copy the configuration file to '~/.config/htop/htoprc'.
+  copy:
+    src: htoprc
+    dest: ~/.config/htop/htoprc
+
+- name: Create the configuration directory '/root/.config/htop'.
+  become: yes
+  file:
+    path: /root/.config/htop
+    state: directory
+    mode: 0700
+
+- name: Copy the configuration file to '/root/.config/htop/htoprc'.
+  become: yes
+  copy:
+    src: htoprc
+    dest: /root/.config/htop/htoprc
+    mode: 0644

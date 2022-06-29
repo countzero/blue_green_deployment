@@ -1,0 +1,4 @@
+#
+# The master playbook for the entire infrastructure.
+#
+- import_playbook: application_server.yml

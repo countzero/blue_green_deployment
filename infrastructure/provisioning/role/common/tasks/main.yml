@@ -1,0 +1,7 @@
+- import_tasks: prepare_apt.yml
+- import_tasks: prepare_ansible.yml
+- import_tasks: configure_dircolors.yml
+- import_tasks: configure_ssh.yml
+- import_tasks: configure_profile.yml
+- import_tasks: configure_bash.yml
+- import_tasks: install_and_configure_htop.yml

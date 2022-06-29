@@ -1,0 +1,10 @@
+#
+# We need to trigger all event handlers now,
+# because otherwise Ansible would restart the
+# Docker daemon at the end of the play.
+#
+# That would be too late, because following tasks
+# expect a correctly configured Docker daemon!
+#
+- name: Flush all event handlers to also restart the docker daemon.
+  meta: flush_handlers

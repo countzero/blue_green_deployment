@@ -1,0 +1,16 @@
+- name: Create the '~/.ssh' directory if it does not exist
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+  tags:
+  - ssh-agent
+
+- name: Create the '/root/.ssh' directory if it does not exist
+  become: true
+  file:
+    path: /root/.ssh
+    state: directory
+    mode: '0700'
+  tags:
+  - ssh-agent
