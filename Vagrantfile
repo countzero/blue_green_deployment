@@ -33,7 +33,9 @@ Vagrant.configure('2') do |configuration|
 
                 './infrastructure/boxes/debian-11.3-amd64/debian-11.3-amd64-virtualbox.box',
 
-                'https://vagrant:K3fR8c3uKUGHY32m@software.stadtwerk.org/vagrant/blue_green_deployment/debian-11.3-amd64/debian-11.3-amd64-virtualbox.box',
+                'https://vagrant:XvtRvnzspH8toyWd@software.stadtwerk.org/vagrant/box/green_blue_deployment/debian-11.3-amd64-virtualbox.box'
+
+                'https://vagrant:XvtRvnzspH8toyWd@development.finnkumkar.de/vagrant/green_blue_deployment/debian-11.3-amd64-virtualbox.box',
             ]
 
             # The hostname of the virtual machine.
