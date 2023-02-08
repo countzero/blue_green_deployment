@@ -2,15 +2,24 @@
 
 const express = require('express');
 
-// Constants
-const PORT = 80;
-const HOST = '0.0.0.0';
+const {
+    HOST,
+    HOSTNAME,
+    PORT,
+    VERSION,
+} = process.env;
 
-// App
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+
+app.get(
+    '/',
+    (request, response) => {
+        response.send(
+            `${VERSION} (${HOSTNAME})`
+        );
+    }
+);
 
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+
+console.log(`${VERSION} (${HOSTNAME}) is running on http://${HOST}:${PORT}`);
