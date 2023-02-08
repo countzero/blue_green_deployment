@@ -25,7 +25,7 @@ GREEN_IP=$(docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddre
 BLUE_IP=$(docker inspect --format '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' blue)
 
 # We are handling all external TCP packages.
-iptables -I FORWARD 1 -p tcp --dport $PUBLIC_PORT -j ACCEPT -m comment --comment "Accept public TCP traffic"
+iptables -I FORWARD 1 -p tcp -j ACCEPT -m comment --comment "Accept public TCP traffic"
 
 # DNAT - local traffic
 iptables -t nat -I OUTPUT 1 -p tcp --dport $PUBLIC_PORT \
