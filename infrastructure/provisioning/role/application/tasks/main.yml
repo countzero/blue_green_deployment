@@ -1,3 +1,20 @@
+- name: A.
+  become: yes
+  command: whoami
+  register: whoami_output
+
+- debug:
+    var: whoami_output.stdout_lines
+
+- name: B.
+  become: yes
+  command: env
+  register: env_output
+  become_flags: -H
+
+- debug:
+    var: env_output.stdout_lines
+
 - name: Execute the application deploy script.
   become: yes
   command: /bin/bash ./deploy.bash
