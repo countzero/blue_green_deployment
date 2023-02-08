@@ -27,6 +27,13 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 
+# We are adding all paths to binaries that require superuser privileges
+# to the PATH of all _non_ root users to enable easy sudo invocations.
+if [[ $UID -ne 0 ]] ; then
+    PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
+fi
+
+
 #
 # Automatically start the ssh-agent.
 #

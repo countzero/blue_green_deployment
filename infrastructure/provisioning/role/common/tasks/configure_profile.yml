@@ -7,6 +7,9 @@
   - profile
   - ssh-agent
 
+- name: Make the changed '~/.profile' available to the current user.
+  command: source ~/.profile
+
 - name: Copy the configuration file to '/root/.profile'.
   become: true
   copy:

@@ -15,7 +15,7 @@ app.get(
     '/',
     (request, response) => {
         response.send(
-            `${VERSION} (${HOSTNAME})`
+            `${VERSION} (${HOSTNAME})\n`
         );
     }
 );
