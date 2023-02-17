@@ -22,4 +22,4 @@ app.get(
 
 app.listen(PORT, HOST);
 
-console.log(`${VERSION} (${HOSTNAME}) is running on http://${HOST}:${PORT}`);
+console.log(`Application ${VERSION} (${HOSTNAME}) is running on http://${HOST}:${PORT}`);
