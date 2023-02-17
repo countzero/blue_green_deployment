@@ -12,6 +12,9 @@ echo "Deploying v$APPLICATION_VERSION.0.0 to machine '$CONTAINER_ID'..."
 
 docker build . --tag "application:v$APPLICATION_VERSION.0.0"
 
+# We are removing the previous container to free up its slot for this deployment.
+docker rm --force $CONTAINER_ID
+
 docker run \
     --detach \
     --name $CONTAINER_ID \
@@ -41,9 +44,6 @@ iptables -t nat -D PREROUTING -p tcp --dport $PUBLIC_PORT -j DNAT --to-destinati
 # We are adding the DNAT routing rule to the next container.
 iptables -t nat -C PREROUTING -p tcp --dport $PUBLIC_PORT -j DNAT --to-destination $NEXT_IP:$CONTAINER_PORT || \
 iptables -t nat -I PREROUTING -p tcp --dport $PUBLIC_PORT -j DNAT --to-destination $NEXT_IP:$CONTAINER_PORT
-
-# We are removing the previous container to free up the slot for the next deployment.
-docker rm --force $ACTIVE_CONTAINER_ID
 
 # We are persisting the new state in the .env file for the next deployment.
 sed --in-place "/^ACTIVE_CONTAINER_ID=/s/=.*/=$CONTAINER_ID/" .env
