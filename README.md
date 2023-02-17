@@ -40,4 +40,12 @@ vagrant up
 
 The application should become available at:
 
- - http://10.0.0.50/
+ - http://10.0.0.50
+
+### Deployment
+
+Execute the following to make a zero downtime deployment:
+
+```Shell
+vagrant ssh -- -t "/bin/bash -l -c 'cd ~/application; sudo ./deploy.bash'"
+```
