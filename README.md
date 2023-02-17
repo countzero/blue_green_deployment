@@ -44,7 +44,7 @@ The application should become available at:
 
 ### Deployment
 
-Execute the following to make a zero downtime deployment:
+Execute the [deploy.bash](./application/deploy.bash) script to make a zero downtime deployment:
 
 ```Shell
 vagrant ssh -- -t "/bin/bash -l -c 'cd ~/application; sudo ./deploy.bash'"
