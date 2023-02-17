@@ -9,17 +9,23 @@ const {
     VERSION,
 } = process.env;
 
-const app = express();
+const main = () => {
 
-app.get(
-    '/',
-    (request, response) => {
-        response.send(
-            `${VERSION} (${HOSTNAME})\n`
-        );
-    }
-);
+    const app = express();
 
-app.listen(PORT, HOST);
+    app.get(
+        '/',
+        (request, response) => {
+            response.send(
+                `${VERSION} (${HOSTNAME})\n`
+            );
+        }
+    );
 
-console.log(`Application ${VERSION} (${HOSTNAME}) is running on http://${HOST}:${PORT}`);
+    app.listen(PORT, HOST);
+
+    console.log(`Application ${VERSION} (${HOSTNAME}) is running on http://${HOST}:${PORT}`);
+}
+
+// We are simulating a warm-up delay of the service.
+setTimeout(main, 5000);
